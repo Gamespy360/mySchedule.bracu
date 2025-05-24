@@ -1,0 +1,70 @@
+body {
+    font-family: "Fira Code", "Montserrat", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    padding: 20px;
+}
+header h1{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+} 
+header p{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+table {
+    margin: 15px auto;
+    justify-self: center;
+    width: 90%;
+    max-width: 900px;
+    border: 1px solid #333;
+    border-collapse: collapse;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+}
+
+th {
+    background: #707070;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    border-bottom: 2px solid #444;
+    cursor: default;
+}
+/* td:hover{
+    background-color: #c8ff89;
+    cursor: default;
+} */
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px 10px;
+    text-align: center;
+    vertical-align: middle;
+    min-width: 110px;
+    max-width: 180px;
+    word-break: break-word;
+    z-index: 0;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* tr:hover {
+    background-color: #e6f7ff;
+    transition: background 0.2s;
+} */
+.col-shadow {
+  background: #e3f2fd;
+  z-index: 1;
+}
+
