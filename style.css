@@ -64,7 +64,7 @@ tr:nth-child(even) {
     transition: background 0.2s;
 } */
 .col-shadow {
-  background: #e3f2fd;
+  background: rgba(2,2,2,0.1);;
   z-index: 1;
 }
 
