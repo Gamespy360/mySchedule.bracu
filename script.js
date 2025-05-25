@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let cell = rows[rowIndex].cells[cellIndex];
             if (day === count) {
                 console.log(count);
+                rows[0].cells[cellIndex].style.backgroundColor='rgb(2,2,2)';
                 for (let r = 1; r < rows.length; r++) {
                     if (rows[r].cells[cellIndex]) {
                         rows[r].cells[cellIndex].classList.add('col-shadow');
@@ -53,7 +54,7 @@ const timeSlots = [
     { start: { h: 8, m: 0 }, end: { h: 10, m: 50 } },  // 8:00 am - 10:50 am
     { start: { h: 11, m: 0 }, end: { h: 12, m: 20 } }, // 11:00 am - 12:20 pm
     { start: { h: 12, m: 30 }, end: { h: 13, m: 50 } },// 12:30 pm - 1:50 pm
-    { start: { h: 14, m: 0 }, end: { h: 15, m: 20 } }  // 2:00 pm - 3:20 pm
+    { start: { h: 14, m: 0 }, end: { h: 20, m: 20 } }  // 2:00 pm - 3:20 pm
 ];
 
 // Find the current time slot index
@@ -84,7 +85,7 @@ function highlightCurrentCell() {
     let dayCol = -1;
     for (let i = 1; i < headerCells.length; i++) {
         if (headerCells[i].textContent.trim().toUpperCase() === currentDay) {
-            headerCells[i].style.backgroundColor='rgb(2,2,2)';
+            
             dayCol = i;
             break;
         }
@@ -96,15 +97,18 @@ function highlightCurrentCell() {
 
     // Highlight the cell at (slotIndex+1, dayCol)
     const row = table.rows[slotIndex + 1]; // +1 because first row is header
-    if (row) {
+    if (row && cell.innerHTML!='') {
         const cell = row.cells[dayCol];
         if (cell) cell.classList.add('highlight');
     }
+    
+    
+    
 }
 
 // Add CSS for highlight
 const style = document.createElement('style');
-style.innerHTML = `.highlight {outline: dashed;}`;
+style.innerHTML = `.highlight { background-color:rgba(2,2,2,0.4) !important; color: white; border-radius: 10px; font-weight:600; letter-spacing:0.09rem; outline: 2.5px solid rgb(66, 66, 66); outline-offset: -2px;}`;
 document.head.appendChild(style);
 
 // Run and update every minute
