@@ -59,15 +59,13 @@ td {
 tr:nth-child(even) {
     background: #f9f9f9;
 }
-
-td:hover {
+.col-shadow {
+  background: rgba(2,2,2,0.1);
+  z-index: 1;
+}
+#cell:hover {
     background-color: #a8a8a8;
     transition: background 0.2s;
     color: white;
     font-weight: 500;
 }
-.col-shadow {
-  background: rgba(2,2,2,0.1);
-  z-index: 1;
-}
-
