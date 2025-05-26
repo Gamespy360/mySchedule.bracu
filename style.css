@@ -64,6 +64,13 @@ tr:nth-child(even) {
   z-index: 1;
 }
 #cell:hover {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    max-width: fit-content;
+    box-shadow: 0 2px 8px rgba(2, 2, 2, 0.07);
     background-color: #a8a8a8;
     transition: background 0.2s;
     color: white;
