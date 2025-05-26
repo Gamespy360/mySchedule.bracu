@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!table) return;
     const rows = table.rows;
     const d = new Date();
-    let day = d.getDay();
+    let day = d.getDay();;
     console.log(day);
     for (let rowIndex = 1; rowIndex < rows.length; rowIndex++) {
         for (let cellIndex = 1; cellIndex < rows[rowIndex].cells.length; cellIndex++) {
@@ -54,7 +54,7 @@ const timeSlots = [
     { start: { h: 8, m: 0 }, end: { h: 10, m: 50 } },  // 8:00 am - 10:50 am
     { start: { h: 11, m: 0 }, end: { h: 12, m: 20 } }, // 11:00 am - 12:20 pm
     { start: { h: 12, m: 30 }, end: { h: 13, m: 50 } },// 12:30 pm - 1:50 pm
-    { start: { h: 14, m: 0 }, end: { h: 20, m: 20 } }  // 2:00 pm - 3:20 pm
+    { start: { h: 14, m: 0 }, end: { h: 15, m: 20 } }  // 2:00 pm - 3:20 pm
 ];
 
 // Find the current time slot index
@@ -97,9 +97,14 @@ function highlightCurrentCell() {
 
     // Highlight the cell at (slotIndex+1, dayCol)
     const row = table.rows[slotIndex + 1]; // +1 because first row is header
-    if (row ) {
+    if (row) {
         const cell = row.cells[dayCol];
-        if (cell && cell.innerText.trim()!='') cell.classList.add('highlight');
+        if (cell && cell.innerText.trim()!=''){
+            cell.classList.add('highlight');
+
+        }else{
+            cell.innerText='Break';
+        }
     }
     
     
@@ -114,3 +119,64 @@ document.head.appendChild(style);
 // Run and update every minute
 highlightCurrentCell();
 setInterval(highlightCurrentCell, 60000);
+
+function getNextClassTime() {
+    // Use your timeSlots array and current time
+    const now = new Date();
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+    // Find the next slot that is in the future
+    for (let i = 0; i < timeSlots.length; i++) {
+        const slot = timeSlots[i];
+        const slotStart = slot.start.h * 60 + slot.start.m;
+        const slotEnd = slot.end.h * 60 + slot.end.m;
+
+        // If current time is before this class starts
+        if (nowMinutes < slotStart) {
+            return { type: 'untilStart', slotIndex: i, targetMinutes: slotStart };
+        }
+        // If current time is during this class
+        if (nowMinutes >= slotStart && nowMinutes <= slotEnd) {
+            return { type: 'untilEnd', slotIndex: i, targetMinutes: slotEnd };
+        }
+    }
+    // No more classes today
+    return null;
+}
+
+function updateClassTimer() {
+    const timerDiv = document.getElementById('class-timer');
+    const next = getNextClassTime();
+    if (!next) {
+        timerDiv.textContent = "No more classes today!";
+        return;
+    }
+
+    const now = new Date();
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+    let remaining = next.targetMinutes - nowMinutes;
+    let hours = Math.floor(remaining / 60);
+    let mins = remaining % 60;
+    let secs = 59 - now.getSeconds(); // For a live ticking effect
+
+    // Adjust minutes and seconds if seconds is negative
+    if (secs < 0) {
+        mins -= 1;
+        secs += 60;
+    }
+
+    // Format with leading zeros
+    const pad = n => String(n).padStart(2, '0');
+    let timeStr = `${pad(hours)}:${pad(mins)}:${pad(secs)}`;
+
+    if (next.type === 'untilStart') {
+        timerDiv.textContent = `Next class starts in: ${timeStr}`;
+    } else {
+        timerDiv.textContent = `Current class ends in: ${timeStr}`;
+    }
+}
+
+// Initial call and update every second
+updateClassTimer();
+setInterval(updateClassTimer, 1000);
+
