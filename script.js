@@ -99,7 +99,7 @@ function highlightCurrentCell() {
     const row = table.rows[slotIndex + 1]; // +1 because first row is header
     if (row ) {
         const cell = row.cells[dayCol];
-        if (cell && cell.innerHTML!='') cell.classList.add('highlight');
+        if (cell && cell.innerText!='') cell.classList.add('highlight');
     }
     
     
