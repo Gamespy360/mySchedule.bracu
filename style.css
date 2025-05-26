@@ -4,15 +4,21 @@ body {
     margin: 0;
 }
 
+main {
+    text-align: center;
+}
+
 header {
     padding: 20px;
     text-align: center;
 }
-header h1{
+
+header h1 {
     margin-bottom: 5px;
     margin-top: 5px;
-} 
-header p{
+}
+
+header p {
     margin-bottom: 5px;
     margin-top: 5px;
 
@@ -38,6 +44,7 @@ th {
     border-bottom: 2px solid #444;
     cursor: default;
 }
+
 /* td:hover{
     background-color: #c8ff89;
     cursor: default;
@@ -59,20 +66,31 @@ td {
 tr:nth-child(even) {
     background: #f9f9f9;
 }
+
 .col-shadow {
-  background: rgba(2,2,2,0.1);
-  z-index: 1;
+    background: rgba(2, 2, 2, 0.1);
+    z-index: 1;
 }
+
 #cell:hover {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 10px;
-    font-size: 1.5rem;
-    font-weight: 600;
-    max-width: fit-content;
-    box-shadow: 0 2px 8px rgba(2, 2, 2, 0.07);
     background-color: #a8a8a8;
     transition: background 0.2s;
     color: white;
     font-weight: 500;
+}
+
+#class-timer {
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: fit-content;
+
+    justify-items: center;
+    padding: 0 10px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    border-radius: 5px;
+    background-color: rgba(112, 112, 112, 0.7);
 }
