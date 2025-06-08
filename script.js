@@ -101,9 +101,6 @@ function highlightCurrentCell() {
         const cell = row.cells[dayCol];
         if (cell && cell.innerText.trim()!=''){
             cell.classList.add('highlight');
-
-        }else{
-            cell.innerText='Break';
         }
     }
     
