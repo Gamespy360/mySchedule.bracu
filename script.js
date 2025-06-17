@@ -141,39 +141,39 @@ function getNextClassTime() {
     return null;
 }
 
-function updateClassTimer() {
-    const timerDiv = document.getElementById('class-timer');
-    const next = getNextClassTime();
-    if (!next) {
-        timerDiv.textContent = "No more classes today!";
-        return;
-    }
+// function updateClassTimer() {
+//     const timerDiv = document.getElementById('class-timer');
+//     const next = getNextClassTime();
+//     if (!next) {
+//         timerDiv.textContent = "No more classes today!";
+//         return;
+//     }
 
-    const now = new Date();
-    const nowMinutes = now.getHours() * 60 + now.getMinutes();
-    let remaining = next.targetMinutes - nowMinutes;
-    let hours = Math.floor(remaining / 60);
-    let mins = remaining % 60;
-    let secs = 59 - now.getSeconds(); // For a live ticking effect
+//     const now = new Date();
+//     const nowMinutes = now.getHours() * 60 + now.getMinutes();
+//     let remaining = next.targetMinutes - nowMinutes;
+//     let hours = Math.floor(remaining / 60);
+//     let mins = remaining % 60;
+//     let secs = 59 - now.getSeconds(); // For a live ticking effect
 
-    // Adjust minutes and seconds if seconds is negative
-    if (secs < 0) {
-        mins -= 1;
-        secs += 60;
-    }
+//     // Adjust minutes and seconds if seconds is negative
+//     if (secs < 0) {
+//         mins -= 1;
+//         secs += 60;
+//     }
 
-    // Format with leading zeros
-    const pad = n => String(n).padStart(2, '0');
-    let timeStr = `${pad(hours)}:${pad(mins)}:${pad(secs)}`;
+//     // Format with leading zeros
+//     const pad = n => String(n).padStart(2, '0');
+//     let timeStr = `${pad(hours)}:${pad(mins)}:${pad(secs)}`;
 
-    if (next.type === 'untilStart') {
-        timerDiv.textContent = `Next class starts in: ${timeStr}`;
-    } else {
-        timerDiv.textContent = `Current class ends in: ${timeStr}`;
-    }
-}
+//     if (next.type === 'untilStart') {
+//         timerDiv.textContent = `Next class starts in: ${timeStr}`;
+//     } else {
+//         timerDiv.textContent = `Current class ends in: ${timeStr}`;
+//     }
+// }
 
-// Initial call and update every second
-updateClassTimer();
-setInterval(updateClassTimer, 1000);
+// // Initial call and update every second
+// updateClassTimer();
+// setInterval(updateClassTimer, 1000);
 
